@@ -20,10 +20,11 @@ const NewItem: FC<Props> = ({ onSubmit }) => {
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
     onSubmit(value);
+    setValue('');
   };
 
   return (
-    <form name="new-item-form" onSubmit={handleSubmit}>
+    <form name="new-item-form" className="w-full" onSubmit={handleSubmit}>
       <Input
         value={value}
         onChange={handleChange}

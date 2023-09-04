@@ -2,10 +2,21 @@ import Head from "next/head";
 import { useEffect } from "react";
 import Item from "~/components/Item";
 import NewItem from "~/components/NewItem";
+import useTodo from "~/hooks/useTodo";
 // import { api } from "~/utils/api";
 
 export default function Home() {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+
+  const {
+    todo,
+    done,
+    complete,
+    markAsTodo,
+    addItem,
+    changeDoneItem,
+    changeTodoItem,
+  } = useTodo();
 
   useEffect(() => {
     document.body.className = "bg-charcoal-700";
@@ -24,14 +35,27 @@ export default function Home() {
             Endless Todos
           </h1>
         </div>
-        <main className="mx-auto max-w-md justify-center pt-32 text-white">
-          <NewItem onSubmit={() => {}} />
-          <Item
-            done
-            onChange={() => {}}
-            onChangeStatus={() => {}}
-            initialValue="123"
-          />
+        <main className="mx-auto max-w-md justify-center px-2 pt-32 text-white">
+          <div className="flex flex-col gap-2 md:w-[26.5rem]">
+            <NewItem onSubmit={addItem} />
+            {todo.map(({ id, value }) => (
+              <Item
+                key={id}
+                onChange={(newValue) => changeTodoItem(id, newValue)}
+                onChangeStatus={() => complete(id)}
+                initialValue={value}
+              />
+            ))}
+            {done.map(({ id, value }) => (
+              <Item
+                key={id}
+                done
+                onChange={(newValue) => changeDoneItem(id, newValue)}
+                onChangeStatus={() => markAsTodo(id)}
+                initialValue={value}
+              />
+            ))}
+          </div>
         </main>
       </div>
     </>

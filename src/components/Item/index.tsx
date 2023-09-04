@@ -24,8 +24,11 @@ const Item: FC<Props> = ({ done, onChangeStatus, onChange, initialValue }) => {
 
   const handleSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    onChange(value);
     inputRef.current?.blur();
+  };
+
+  const handleBlur: FormEventHandler = (e) => {
+    onChange(value);
   };
 
   return (
@@ -37,6 +40,7 @@ const Item: FC<Props> = ({ done, onChangeStatus, onChange, initialValue }) => {
           value={value}
           done={done}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
       </form>
     </div>

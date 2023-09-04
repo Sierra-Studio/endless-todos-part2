@@ -85,7 +85,7 @@ const useTodo = () => {
     if (completedItemIndex < 0) return;
     const completedItem = { ...todoCopy[completedItemIndex]! };
     setDoneList((currentList) =>
-      [...currentList, completedItem].sort(sortById)
+      [...currentList, completedItem]
     );
     todoCopy.splice(completedItemIndex, 1);
     setTodoList(todoCopy);

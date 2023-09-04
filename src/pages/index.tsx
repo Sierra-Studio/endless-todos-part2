@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
+import Item from "~/components/Item";
+import NewItem from "~/components/NewItem";
 // import { api } from "~/utils/api";
 
 export default function Home() {
@@ -23,10 +25,13 @@ export default function Home() {
           </h1>
         </div>
         <main className="mx-auto max-w-md justify-center pt-32 text-white">
-          ✨ Start here ✨
-          {/* <p className="text-2xl text-white">
-            {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-          </p> */}
+          <NewItem onSubmit={() => {}} />
+          <Item
+            done
+            onChange={() => {}}
+            onChangeStatus={() => {}}
+            initialValue="123"
+          />
         </main>
       </div>
     </>
